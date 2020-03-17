@@ -18,3 +18,16 @@ after_success:
   - docker push omichalo/multi-nginx
   - docker push omichalo/multi-server
   - docker push omichalo/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket-name: "elasticbeanstalk-us-east-2-384272596098"
+  bucket-path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
