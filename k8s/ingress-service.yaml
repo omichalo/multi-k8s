@@ -5,9 +5,16 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 spec:
+  tls:
+    - hosts:
+        - test.avtt78.fr
+      secretName: test-avtt78
   rules:
-    - http:
+    - host: test.avtt78.fr
+      http:
         paths: 
           - path: /?(.*)
             backend:
