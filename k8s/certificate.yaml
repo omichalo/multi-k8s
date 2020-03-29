@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: test-avtt78-tls
+spec:
+  secretName: test-avtt78
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: avtt78.fr
+  dnsNames:
+    - test.avtt78.fr
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+          domains: 
+            - test.avtt78.fr
